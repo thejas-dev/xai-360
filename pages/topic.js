@@ -49,10 +49,7 @@ export default function phone() {
         document.getElementById('main').classList.remove('hidden');
     }
 
-    const changeWindow = () => {
-        document.getElementById('intro').classList.add('hidden');
-        document.getElementById('main').classList.remove('hidden');
-    }
+   
 
    
 
