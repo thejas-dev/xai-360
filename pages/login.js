@@ -35,7 +35,7 @@ export default function login({providers}) {
             <div 
             className="h-screen flex flex-col z-10 w-full mx-auto snap-y snap-mandatory 
         	scrollbar-hidden scroll-smooth">
-        		<LoginComponent id={id}/>
+        		<LoginComponent />
         	</div>
         </div>
 
