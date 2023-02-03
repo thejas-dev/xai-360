@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Krub&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@500&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300&display=swap');*/
+@import url(//db.onlinewebfonts.com/c/a21764905c623777a48ec557b4229c22?family=Anurati);
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+@font-face {
+	font-family: "Anurati-Regular";
+	src:url('../public/fonts/Anurati-Regular.otf');
+}
+@font-face {
+	font-family: "Varinonormal-Regular";
+	src:url('../public/fonts/Varinonormal-Regular.otf');
+}
+
+@layer components{
+	.heroButton{
+		@apply px-3 py-2 border-[#242424] rounded-full uppercase text-sm tracking-widest text-gray-500 transition-all hover:border-[#F7AB0A]/40 hover:text-[#F7AB0A]/40 
+	}
+	.contactInput{
+		@apply outline-none bg-slate-400/10 rounded-sm border-b px-6 py-4 border-[#242424] text-gray-500 placeholder-gray-500 transition-all focus:border-[#F7AB0A]/40 focus:text-[#F7AB0A]/50 hover:border-[#F7AB0A]/40;
+
+	}
+}
+
+.container{
+	width: 70%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.text-gradient {
+    background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card{
+	min-height: 70vh;
+	width: 30rem;
+	transform-style: preserve-3d;
+  	box-shadow: 0px 10px 30px 0px rgba(252, 176, 69, 0.4);
+	border-radius: 30px;
+	padding: 2rem 4rem;
+	perspective: 1000px
+}
+
+.card-1 , .card-2 , .card-3{
+  	box-shadow: 0px 10px 30px 0px rgba(252, 176, 69, 0.15);
+	border-radius: 30px;
+	padding: 2rem 4rem;
+	transform-style:preserve-3d;
+}
+
+.support-card-1 , .support-card-2, .support-card-3,.support-card-4 {
+	
+	transform-style:preserve-3d;
+}
+
+.container-1,.container-2{
+	perspective: 1000px;
+}
+
+.description-1{
+	transform-style: preserve-3d;
+}
+
+@media only screen and (min-device-width:500px){
+	.container{
+		width: 100%;
+	}
+	.card{
+		padding: 2rem 1rem
+	}
+	
+}
+
+@media only screen and (max-device-width:500px ){
+	.card-1 , .card-2 , .card-3{
+		box-shadow: 0px 10px 30px 0px rgba(252, 176, 69, 0.15);
+		border-radius: 30px;
+		padding: 1.5rem 1.3rem;
+		transform-style:preserve-3d;
+	}
+}
+
+
+.sneaker{
+	min-height:35vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform-style: preserve-3d;
+}
+
+.circle{
+	width: 14rem;
+	height: 14rem;
+	background: linear-gradient(
+		to right,
+		rgba(245,70,66,0.75),
+		rgba(8,83,156,0.75)
+		);
+	position: absolute;
+	border-radius: 50%;
+	z-index: 1
+}
+
+.sneaker img{
+	width: 18rem;
+	height: 18rem;
+	transition: all 0.75s ease-out;
+	z-index: 2;
+}
+
+
+.info {
+	transform-style: preserve-3d;
+	transition: all 0.75s ease-out;
+	padding-top: 20px;
+}
+
+.bg-instagram-color{
+	background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+}
+
+.purchase button{
+	width: 100%;
+	padding: 1rem 0rem;
+	background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+  	box-shadow: 0px 10px 20px 0px #833ab4;
+	transform-style: preserve-3d;
+	color:white;
+	cursor: pointer;
+	border-radius: 30px;
+	font-weight: bolder;
+}
+
+.bg-gradient-to-r2 {
+    background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    transition: all 0.5s ease;
+    
+}
+
+.from-instagram {
+    opacity: 0.8;
+}
+.shadow-lg {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.rounded-full {
+    border-radius: 9999px;
+}
+.hover:bg-gray-800 {
+    background-color: #2d3748;
+}
+.focus:outline-none {
+    outline: none;
+}
+.focus:shadow-outline-instagram {
+    box-shadow: 0 0 0 3px #833ab4;
+}
