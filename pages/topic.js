@@ -1,12 +1,53 @@
 import TopicComponent from '../components/TopicComponent';
 import Header2 from '../components/Header2';
 import {motion} from 'framer-motion';
-
+import Script from 'next/script';
+import {useEffect} from 'react'
+import {getSession,useSession} from 'next-auth/react'
+import axios from 'axios';
+import {loginRoutes} from '../utils/ApiRoutes'
+import {useRouter} from 'next/router';
+import {useRecoilState} from 'recoil'
+import {currentUserState} from '../atoms/userAtom'
 
 export default function phone() {
-    // body...
+    // body...a
 
+ const {data:session,status} = useSession();
+    const router = useRouter();
+    const [currentUser,setCurrentUser] = useRecoilState(currentUserState);
 
+    
+
+    useEffect(()=>{
+        if(status==='authenticated'){
+            handleValidation();
+        }else{
+            router.push('/login?redirect=transcribe');
+        }
+    },[])
+
+    const handleValidation = async() =>{
+        const email = session.user.email
+        const {data} = await axios.post(loginRoutes,{
+            email,
+        });
+        setCurrentUser(data.user);  
+    }
+
+    useEffect(()=>{
+        document.addEventListener('keydown',(e)=>{
+            var name = e.key;
+            if(name === 'Enter'){
+                changeWindow();
+            }
+        })
+    },[])
+
+    const changeWindow = () => {
+        document.getElementById('intro').classList.add('hidden');
+        document.getElementById('main').classList.remove('hidden');
+    }
 
     const changeWindow = () => {
         document.getElementById('intro').classList.add('hidden');
@@ -97,4 +138,12 @@ export default function phone() {
     </div>
 
     )
+}
+
+export async function getServerSideProps(ctx) {
+return{
+    props: {
+      session: await getSession(ctx)
+    }
+  }
 }
