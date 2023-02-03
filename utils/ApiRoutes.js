@@ -1,4 +1,4 @@
-export const host = "http://localhost:3333";
+export const host = "https://xai-server.onrender.com";
 
 
 export const registerRoutes = `${host}/api/auth/register`;
