@@ -2,7 +2,7 @@ import {useEffect,useState} from 'react'
 import Services from '../components/Services'
 import Header2 from '../components/Header2';
 import Join from '../components/Join.tsx'
-import Sidebar from '../components/SideBar';
+import Sidebar from '../components/Sidebar';
 import Hero from '../components/Hero';
 import Projects from '../components/Projects';
 import Mvv from '../components/Mvv';
