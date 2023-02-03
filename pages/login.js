@@ -10,7 +10,7 @@ import {getProviders} from 'next-auth/react'
 
 export default function login({providers}) {
 	// body...
-	const id = Object.values(providers).map((provider)=>provider.id)
+	console.log(providers)
 
 
 
