@@ -202,7 +202,7 @@ export default function ProfileComponent(argument) {
         className="h-full flex px-4 flex-col z-10 max-w-6xl mx-auto mt-[100px] mb-[100px]
     	scroll-smooth">	    		
     		<div className="w-full wrapper gap-7 flex text-[#FFF]">
-    			<div className="container">
+    			<div className="container mx-auto">
     				<div className="card bg-purple-200/10 border-[2px] border-gray-700">
     					<div className="sneaker relative">
     						<input type="file" id="file1" hidden accept="image/*" value={path2} onChange={(e)=>{
