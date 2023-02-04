@@ -191,7 +191,7 @@ export default function LoginComponent({id}){
 					<button 
 					onClick={()=>{
 						if(id){
-							signIn(id)
+							signIn(id[0])
 						}else{
 							signIn()	
 						}						
@@ -199,7 +199,7 @@ export default function LoginComponent({id}){
 					className="px-6 py-3 text-[#ca6f2b] font-varino bg-black/70">
 					{
 						ready ?
-						<div className="h-7 w-7 border-1 border-gray-700 border-t-yellow-500 rounded-full animate-spin">
+						<div className="h-7 w-7 border-[4px] border-gray-400 border-t-yellow-500 rounded-full animate-spin">
 
 						</div>
 						:
