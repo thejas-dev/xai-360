@@ -8,7 +8,7 @@ import {loginRoutes,registerRoutes,setNumberRoutes} from '../utils/ApiRoutes'
    
 
 
-export default function LoginComponent({providers,id2}){
+export default function LoginComponent(){
 	const router = useRouter();
 	const {data:session} = useSession();
 	const[ready,setReady] = useState(false);
@@ -23,7 +23,7 @@ export default function LoginComponent({providers,id2}){
 	const [fourthNumber,setFourthNumber] = useState('');
 	const [loader,setLoader]  = useState(false);
 	const [resentOtp,setResentOtp] = useState(false);
-
+	const id = "google";
 	useEffect(()=>{
 		if(session){
 			if(!ready){
@@ -33,17 +33,8 @@ export default function LoginComponent({providers,id2}){
 			handleValidation()
 		}
 	},[session])
-	var id = "google";
-	useEffect(()=>{
-		if(id){
-			id = Object.values(providers).map((provider)=>provider.id)	
-		}		
-	},[providers])
-	useEffect(()=>{
-		if(id2){
-			id=id2;
-		}
-	},[id2])
+	
+	
 	const redirect = () =>{
 		router.push(`/${router.query.redirect ? router.query.redirect : "/"}`);
 	}
@@ -200,13 +191,7 @@ export default function LoginComponent({providers,id2}){
 				<div className="mt-14 w-[130px] hover:scale-110 transition-all duration-200 ease-in-out
 				active:scale-90 flex justify-center rounded-xl border-[2px] border-[#f1ad2f] p-2">
 					<button 
-					onClick={()=>{
-						if(id){
-							signIn(id[0])
-						}else{
-							signIn()	
-						}						
-					}}
+					onClick={()=>signIn(id)}}
 					className={`${ready ? 'px-5 py-2':'px-6 py-3'} text-[#ca6f2b] font-varino bg-black/70`}>
 					{
 						ready ?
