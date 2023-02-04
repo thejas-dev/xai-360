@@ -188,7 +188,7 @@ export default function LoginComponent(){
 					/>
 				</div>
 				:
-				<div className={`mt-14 ${ready ? "w-[60px]" : "w-[130px]"} hover:scale-110 transition-all duration-200 ease-in-out
+				<div className={`mt-14 ${ready ? "w-[75px]" : "w-[130px]"} hover:scale-110 transition-all duration-200 ease-in-out
 				active:scale-90 flex justify-center rounded-xl border-[2px] border-[#f1ad2f] p-2`}>
 					<button 
 					onClick={()=>signIn(id)}
