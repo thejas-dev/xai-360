@@ -1,13 +1,14 @@
-import {signIn,useSession,getProviders,getSession} from 'next-auth/react'
+import {signIn,useSession,getProviders} from 'next-auth/react'
 import {useRouter} from 'next/router';
 import {useRecoilState} from 'recoil'
 import {currentUserState} from '../atoms/userAtom'
 import axios from 'axios';
 import {useState,useEffect} from 'react';
 import {loginRoutes,registerRoutes,setNumberRoutes} from '../utils/ApiRoutes'
+   
 
 
-export default function LoginComponent({id}){
+export default function LoginComponent(){
 	const router = useRouter();
 	const {data:session} = useSession();
 	const[ready,setReady] = useState(false);
@@ -32,7 +33,10 @@ export default function LoginComponent({id}){
 			handleValidation()
 		}
 	},[session])
-	useEffect(()=>{console.log(id)},[id])
+	var id = "";
+	  useEffect(()=>{
+	    id = Object.values(providers).map((provider)=>provider.id)
+	  },[providers])
 	const redirect = () =>{
 		router.push(`/${router.query.redirect ? router.query.redirect : "/"}`);
 	}
@@ -255,3 +259,11 @@ export default function LoginComponent({id}){
 	)
 }
 
+export async function getServerSideProps(context) {
+  const providers =await getProviders();
+  return{
+    props: {
+      providers
+    }
+  }
+}
