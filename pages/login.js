@@ -10,7 +10,10 @@ import {getProviders} from 'next-auth/react'
 
 export default function login({providers}) {
 	// body...
-	console.log(providers)
+  var id = "";
+	useEffect(()=>{
+    id = Object.values(providers).map((provider)=>provider.id)
+  },[])
 
 
 
@@ -35,7 +38,7 @@ export default function login({providers}) {
             <div 
             className="h-screen flex flex-col z-10 w-full mx-auto snap-y snap-mandatory 
         	scrollbar-hidden scroll-smooth">
-        		<LoginComponent />
+        		<LoginComponent id={id}/>
         	</div>
         </div>
 

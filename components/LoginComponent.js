@@ -7,7 +7,7 @@ import {useState,useEffect} from 'react';
 import {loginRoutes,registerRoutes,setNumberRoutes} from '../utils/ApiRoutes'
 
 
-export default function LoginComponent(){
+export default function LoginComponent({id}){
 	const router = useRouter();
 	const {data:session} = useSession();
 	const[ready,setReady] = useState(false);
@@ -189,7 +189,13 @@ export default function LoginComponent(){
 				<div className="mt-14 w-[130px] hover:scale-110 transition-all duration-200 ease-in-out
 				active:scale-90 flex justify-center rounded-xl border-[2px] border-[#f1ad2f] p-2">
 					<button 
-					onClick={()=>signIn()}
+					onClick={()=>{
+						if(id){
+							signIn(id)
+						}else{
+							signIn()	
+						}						
+					}}
 					className="px-6 py-3 text-[#ca6f2b] font-varino bg-black/70">LOGIN</button>
 				</div>
 			}
