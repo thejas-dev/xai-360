@@ -290,7 +290,7 @@ export default function SummaryComponent() {
 	}
 
 	const transcribe = () => {
-		if(!summaryType){
+		if(summaryType==='select' || !summaryType){
 			const element = document.getElementById('summarytype_box')
 			element.classList.add('border-red-500','animate-pulse')
 			element.scrollIntoView({behavior:"smooth",block:"center"});		
