@@ -13,7 +13,7 @@ export default function login({providers}) {
   var id = "";
 	useEffect(()=>{
     id = Object.values(providers).map((provider)=>provider.id)
-  },[])
+  },[providers])
 
 
 
