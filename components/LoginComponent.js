@@ -188,8 +188,8 @@ export default function LoginComponent(){
 					/>
 				</div>
 				:
-				<div className="mt-14 w-[130px] hover:scale-110 transition-all duration-200 ease-in-out
-				active:scale-90 flex justify-center rounded-xl border-[2px] border-[#f1ad2f] p-2">
+				<div className={`mt-14 ${ready ? "w-[40px]" : "w-[130px]"} hover:scale-110 transition-all duration-200 ease-in-out
+				active:scale-90 flex justify-center rounded-xl border-[2px] border-[#f1ad2f] p-2`}>
 					<button 
 					onClick={()=>signIn(id)}
 					className={`${ready ? 'px-5 py-2':'px-6 py-3'} text-[#ca6f2b] font-varino bg-black/70`}>
