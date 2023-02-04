@@ -8,7 +8,7 @@ import {loginRoutes,registerRoutes,setNumberRoutes} from '../utils/ApiRoutes'
    
 
 
-export default function LoginComponent(){
+export default function LoginComponent({providers}){
 	const router = useRouter();
 	const {data:session} = useSession();
 	const[ready,setReady] = useState(false);
