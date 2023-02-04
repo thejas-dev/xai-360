@@ -32,7 +32,7 @@ export default function LoginComponent({id}){
 			handleValidation()
 		}
 	},[session])
-console.log(id)
+	useEffect(()=>{console.log(id)},[id])
 	const redirect = () =>{
 		router.push(`/${router.query.redirect ? router.query.redirect : "/"}`);
 	}
