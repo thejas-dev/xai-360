@@ -125,7 +125,7 @@ export default function PdfComponent(argument) {
 	const pdf_input = document.querySelector('#pdf_input');
   	const formData = new FormData();
 	formData.append("file", pdf_input.files[0]);
-	const response = await fetch(`http://localhost:3333/pdf?language=${language}&name=${name}`, {
+	const response = await fetch(`https://xai-server.onrender.com/pdf?language=${language}&name=${name}`, {
 		method:'POST',
 		body:formData
 	}); 

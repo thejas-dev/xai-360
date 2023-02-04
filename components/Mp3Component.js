@@ -97,7 +97,7 @@ export default function Mp3Component() {
 	const generateAudio = async() => {
 		setLoader(true);
 		document.getElementById('audio_block').classList.remove('hidden');
-		const response = await fetch(`http://localhost:3333/audio?text=${text}&language=${language}&name=${name}`);
+		const response = await fetch(`https://xai-server.onrender.com/audio?text=${text}&language=${language}&name=${name}`);
 		const audioBlob = await response.blob();
 		const audioUrl = URL.createObjectURL(audioBlob);
 		const audio = document.getElementById('audio_source')
