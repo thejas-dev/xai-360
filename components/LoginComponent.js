@@ -196,7 +196,16 @@ export default function LoginComponent({id}){
 							signIn()	
 						}						
 					}}
-					className="px-6 py-3 text-[#ca6f2b] font-varino bg-black/70">LOGIN</button>
+					className="px-6 py-3 text-[#ca6f2b] font-varino bg-black/70">
+					{
+						ready ?
+						<div className="h-7 w-7 border-1 border-gray-700 border-t-yellow-500 rounded-full animate-spin">
+
+						</div>
+						:
+						'LOGIN'
+					}
+					</button>
 				</div>
 			}
 			{
