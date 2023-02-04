@@ -73,13 +73,13 @@
 	transform-style: preserve-3d;
 }
 
-@media only screen and (min-width:500px){
+@media only screen and (min-device-width:500px){
 	.container{
-		width: 90%;
+		width: 100%;
 	}
 	.card{
-		padding: 1rem 2rem;
-		width: 25rem
+		padding: 2rem 1rem;
+		width: 85%
 	}
 }
 
