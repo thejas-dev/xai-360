@@ -11,8 +11,9 @@ import {getProviders} from 'next-auth/react'
 export default function login({providers}) {
 	// body...
   var id = "";
-	useEffect(()=>{
+  useEffect(()=>{
     id = Object.values(providers).map((provider)=>provider.id)
+    console.log(id,providers)
   },[providers])
 
 
