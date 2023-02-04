@@ -8,7 +8,7 @@ import {loginRoutes,registerRoutes,setNumberRoutes} from '../utils/ApiRoutes'
    
 
 
-export default function LoginComponent({providers}){
+export default function LoginComponent({providers,id2}){
 	const router = useRouter();
 	const {data:session} = useSession();
 	const[ready,setReady] = useState(false);
@@ -33,7 +33,7 @@ export default function LoginComponent({providers}){
 			handleValidation()
 		}
 	},[session])
-	var id = "";
+	var id = "google";
 	useEffect(()=>{
 		if(id){
 			id = Object.values(providers).map((provider)=>provider.id)	
