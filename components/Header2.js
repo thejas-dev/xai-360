@@ -330,7 +330,7 @@ export default function Header({hide,redirect,token}) {
 				</motion.div>
 				<div className={`fixed ${revealMenu ? "left-0": "left-[100%]"} top-0 z-40 transition-all duration-500 ease-in-out w-full h-full  `}>
 		          <Sidebar loginRedirect={loginRedirect} currentUser={currentUser} signOut={signOut} aboutRedirect={aboutRedirect} openProfile={openProfile} 
-		          supportRedirect={supportRedirect} pricingRedirect={pricingRedirect} token={token} currentUser={currentUser}/>    
+		          supportRedirect={supportRedirect} pricingRedirect={pricingRedirect} token={token}/>    
 		        </div>
 
 			</div>

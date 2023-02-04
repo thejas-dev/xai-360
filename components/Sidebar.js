@@ -4,7 +4,7 @@ import {BsChevronDown} from 'react-icons/bs'
 import {useState} from 'react';
 import {useRouter} from 'next/router'
 
-export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect,openProfile,pricingRedirect,supportRedirect,token,currentUser}) {
+export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect,openProfile,pricingRedirect,supportRedirect,token}) {
 	// body...
 	const [openServicesTab,setOpenServicesTab] = useState(false)
 	const router = useRouter();
