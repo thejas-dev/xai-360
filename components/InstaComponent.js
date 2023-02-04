@@ -119,7 +119,7 @@ export default function InstaComponent() {
 	const generateTags = async() => {
 		const response = await openai.createCompletion({
 			model: "text-davinci-003",
-			prompt:`Can you suggest some tags for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`,
+			prompt:`Can you suggest some tags for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
 			temperature: 0.3,
 	  		max_tokens: 500,
 	  		top_p: 1,
