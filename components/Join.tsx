@@ -35,12 +35,10 @@ export default function Join() {
 					<motion.img 
 					initial={{
 						opacity:0,
-						y:-70,
 						x:-70
 					}}
 					whileInView={{
 						opacity:0.9,
-						y:0,
 						x:0
 					}}
 					transition={{
@@ -53,12 +51,10 @@ export default function Join() {
 					<motion.img 
 					initial={{
 						opacity:0,
-						y:-70,
-						x:70
+						x:-70
 					}}
 					whileInView={{
 						opacity:0.9,
-						y:0,
 						x:0
 					}}
 					transition={{
@@ -73,12 +69,10 @@ export default function Join() {
 					<motion.img 
 					initial={{
 						opacity:0,
-						y:70,
-						x:-70
+						x:70
 					}}
 					whileInView={{
 						opacity:0.9,
-						y:0,
 						x:0
 					}}
 					transition={{
@@ -91,12 +85,10 @@ export default function Join() {
 					<motion.img 
 					initial={{
 						opacity:0,
-						y:70,
 						x:70
 					}}
 					whileInView={{
 						opacity:0.9,
-						y:0,
 						x:0
 					}}
 					transition={{
