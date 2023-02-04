@@ -4,7 +4,7 @@ import {BsChevronDown} from 'react-icons/bs'
 import {useState} from 'react';
 import {useRouter} from 'next/router'
 
-export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect,openProfile,pricingRedirect,supportRedirect}) {
+export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect,openProfile,pricingRedirect,supportRedirect,token,currentUser}) {
 	// body...
 	const [openServicesTab,setOpenServicesTab] = useState(false)
 	const router = useRouter();
@@ -44,7 +44,7 @@ export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect
 	]
 
 	const redirect = (url) => {
-		router.post(`/${url}`)
+		router.push(`/${url}`)
 	}
 
 	const moveToStorage = () => {
@@ -145,6 +145,44 @@ export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect
 					</div>
 					</>
 				}
+				<motion.div
+					initial={{
+						opacity:0
+					}}
+					whileInView={{
+						opacity:1,
+					}}
+					transition={{
+						duration:2
+					}}
+					className="active:scale-90 flex 
+					mx-auto rounded-xl justify-between gap-3 z-50 p-[6px] "
+					>
+					{
+						currentUser &&
+						<>
+						{
+							token==='all'?
+							<>
+							<div className="flex gap-1 z-50 items-center">
+								<img src="https://ik.imagekit.io/d3kzbpbila/thejashari_Cl77Fbt7p2" alt="" className="h-9 w-9"/>
+								<h1 className="md:text-xl text-md font-bold text-sky-400">{currentUser.blueToken}</h1>
+							</div>
+							<div className="flex z-50  items-center">
+								<img src="https://icones.pro/wp-content/uploads/2022/07/icones-d-eclair-orange.png" alt="" className="h-8 w-7"/>
+								<h1 className="md:text-xl text-md font-bold text-orange-400">{currentUser.orangeToken}</h1>
+							</div>
+							<div className="flex z-50  items-center">
+								<img src="https://ik.imagekit.io/d3kzbpbila/pink_token-removebg-preview_n7gntN4i3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675259140856" alt="" className="h-7 w-7"/>
+								<h1 className="md:text-xl text-md font-bold text-pink-400">{currentUser.pinkToken}</h1>
+							</div>
+							</>
+							:
+							""
+						}
+						</>
+					}
+					</motion.div>
 			</motion.div>
 		</div>	
 

@@ -124,7 +124,8 @@ export default function YoutuneComponent(argument) {
 		  channel name:${channelName ? channelName : "not provided"}\n
 		  category of the video:${category}\n
 		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords}
+		  keywords:${keywords ? keywords : 'not provided'}\n
+		  ${promotingProducts && `promoting a product with name:${productName}`}
 		   `,
 		  temperature: 0.2,
 		  max_tokens: 100,
@@ -145,7 +146,8 @@ export default function YoutuneComponent(argument) {
 		  channel name:${channelName ? channelName : "not provided"}\n
 		  category of the video:${category}\n
 		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords}
+		  keywords:${keywords ? keywords : 'not provided'}\n
+		  ${promotingProducts && `promoting a product with name:${productName}`}
 		   `,
 		  temperature: 0.4,
 		  max_tokens: 500,
@@ -167,7 +169,8 @@ export default function YoutuneComponent(argument) {
 		  channel name:${channelName ? channelName : "not provided"}\n
 		  category of the video:${category}\n
 		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords}
+		  keywords:${keywords ? keywords : 'not provided'}\n
+		  ${promotingProducts && `promoting a product with name:${productName}`}
 		   `,
 		  temperature: 0.3,
 		  max_tokens: 300,

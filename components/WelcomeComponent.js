@@ -16,7 +16,7 @@ export default function WelcomeComponent({id}){
 	},[])
 
 	const redirect = () =>{
-		router.push(`/${router.query.redirect ? router.query.redirect : ""}`);
+		router.push(`/imagegenerate`);
 	}
 
 	const typeMessageMain = (text,element) => {
@@ -47,7 +47,7 @@ export default function WelcomeComponent({id}){
 			<center>
 				<button onClick={redirect} className="mt-10 active:scale-90 transition-all ease-in-out duration-200 z-10 mx-auto 
     			rounded-xl bg-gray-100/90 px-3 py-2 text-black font-mono tracking-[3px]">
-					Go to Home		
+					Visit a service		
 				</button>
 			</center>
 		</div>

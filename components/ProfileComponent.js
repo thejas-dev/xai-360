@@ -175,7 +175,7 @@ export default function ProfileComponent(argument) {
 		<div id="lowerDesign" className="fixed w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-yellow-100/30 -bottom-[5%] blur-3xl -left-14 md:-left-20"/>
 				
 
-		<Header2 hide="true" token="all" redirect="profile"/>
+		<Header2 hide="true" redirect="profile"/>
 		<motion.div 
               initial={{
                 opacity:0

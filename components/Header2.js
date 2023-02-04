@@ -54,34 +54,42 @@ export default function Header({hide,redirect,token}) {
 
 	const moveToStorage = () => {
 		router.push('/storage');
+		setRevealProfile(false);
 	}
 
 	const movetoProfile = () => {
 		router.push('/profile')
+		setRevealProfile(false)
 	}
 
 	const loginRedirect = () => {
-		router.push(`/login?redirect=${redirect}`)
+		router.push(`/login?redirect=${redirect}`);
+		setRevealProfile(false)
 	}
 
 	const aboutRedirect = () => {
-		router.push('/#about')
+		router.push('/#about');
+		setRevealProfile(false)
 	}
 
 	const supportRedirect = ()=> {
 		router.push('/#support');
+		setRevealProfile(false)
 	}
 
 	const pricingRedirect = () => {
 		router.push('/#pricing');
+		setRevealProfile(false)
 	}
 
 	const openProfile = () => {
-		setRevealMenu(false);
+		router.push('/profile');
+		setRevealProfile(false)
 	}
 
 	const redirectUrl = (url) => {
-		router.push(`/${url}`)
+		router.push(`/${url}`);
+		setRevealProfile(false)
 	}
 
 	return (
@@ -270,8 +278,8 @@ export default function Header({hide,redirect,token}) {
 					transition={{
 						duration:2
 					}}
-					className="active:scale-90 flex
-					 rounded-xl justify-between gap-3 z-50 p-[6px] "
+					className="active:scale-90 flex 
+					mx-auto rounded-xl justify-between gap-3 z-50 p-[6px] "
 					>
 					{
 						currentUser &&
@@ -294,22 +302,6 @@ export default function Header({hide,redirect,token}) {
 								<img src="https://ik.imagekit.io/d3kzbpbila/pink_token-removebg-preview_n7gntN4i3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675259140856" alt="" className="h-7 w-7"/>
 								<h1 className="md:text-xl text-md font-bold text-pink-400">{currentUser.pinkToken}</h1>
 							</div>
-							:
-							token==='all'?
-							<>
-							<div className="flex gap-1 z-50 items-center">
-								<img src="https://ik.imagekit.io/d3kzbpbila/thejashari_Cl77Fbt7p2" alt="" className="h-9 w-9"/>
-								<h1 className="md:text-xl text-md font-bold text-sky-400">{currentUser.blueToken}</h1>
-							</div>
-							<div className="flex z-50  items-center">
-								<img src="https://icones.pro/wp-content/uploads/2022/07/icones-d-eclair-orange.png" alt="" className="h-8 w-7"/>
-								<h1 className="md:text-xl text-md font-bold text-orange-400">{currentUser.orangeToken}</h1>
-							</div>
-							<div className="flex z-50  items-center">
-								<img src="https://ik.imagekit.io/d3kzbpbila/pink_token-removebg-preview_n7gntN4i3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675259140856" alt="" className="h-7 w-7"/>
-								<h1 className="md:text-xl text-md font-bold text-pink-400">{currentUser.pinkToken}</h1>
-							</div>
-							</>
 							:
 							""
 						}
@@ -338,7 +330,7 @@ export default function Header({hide,redirect,token}) {
 				</motion.div>
 				<div className={`fixed ${revealMenu ? "left-0": "left-[100%]"} top-0 z-40 transition-all duration-500 ease-in-out w-full h-full  `}>
 		          <Sidebar loginRedirect={loginRedirect} currentUser={currentUser} signOut={signOut} aboutRedirect={aboutRedirect} openProfile={openProfile} 
-		          supportRedirect={supportRedirect} pricingRedirect={pricingRedirect}  />    
+		          supportRedirect={supportRedirect} pricingRedirect={pricingRedirect} token={token} currentUser={currentUser}/>    
 		        </div>
 
 			</div>
