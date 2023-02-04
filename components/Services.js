@@ -7,15 +7,15 @@ import {RxCodesandboxLogo} from 'react-icons/rx';
 import {GiMusicalScore} from 'react-icons/gi'
 import { RiCodeSSlashLine } from 'react-icons/ri';
 import {FaRegFileAudio} from 'react-icons/fa'
-import {CgDebug,CgNotes} from 'react-icons/cg'
+import {CgDebug,CgNotes,CgWebsite} from 'react-icons/cg'
 import {BiSearchAlt} from 'react-icons/bi'
-import {TbBulb} from 'react-icons/tb'
+import {TbBulb} from 'react-icons/tb';
 import {MdOutlineArticle,MdOutlineQuestionAnswer,MdOutlineTopic,MdOutlineNotes,MdOutlinePeople} from 'react-icons/md'
 import {SlSpeech,SlEnvolopeLetter} from 'react-icons/sl';
 import {useRouter} from 'next/router'
 import {BsImages,BsCardHeading} from 'react-icons/bs';
 import {GoQuestion} from 'react-icons/go'
-import {AiFillYoutube,AiOutlineInstagram,AiOutlineFilePdf} from 'react-icons/ai'
+import {AiFillYoutube,AiOutlineInstagram,AiOutlineFilePdf,AiOutlineApple} from 'react-icons/ai'
 
 export default function Services(argument) {
 	// body...
@@ -150,6 +150,22 @@ export default function Services(argument) {
 						<button className="text-xl font-mono text-white/80">Profanity Filter</button>
 					</div>
 				</div>
+				<div className="w-full overflow-hidden border-[2px] border-gray-800/80 md:gap-5 gap-4 rounded-xl bg-gray-700/20 hover:bg-gray-500/30 active:scale-90 active:bg-gray-300/40 transiton-all duration-100 cursor-pointer ease-out backdrop-blur-sm flex items-center py-5 px-5">
+					<div className="bg-gray-500/70 rounded-full p-2 flex items-center justify-center">
+						<CgWebsite className="h-7 w-7 text-gray-200"/>
+					</div>
+					<div className="w-full ">
+						<button className="text-xl font-mono text-gray-400/80">Web Development (Soon)</button>
+					</div>
+				</div>
+				<div className="w-full overflow-hidden border-[2px] border-gray-800/80 md:gap-5 gap-4 rounded-xl bg-gray-700/20 hover:bg-gray-500/30 active:scale-90 active:bg-gray-300/40 transiton-all duration-100 cursor-pointer ease-out backdrop-blur-sm flex items-center py-5 px-5">
+					<div className="bg-gray-500/70 rounded-full p-2 flex items-center justify-center">
+						<AiOutlineApple className="h-7 w-7 text-gray-200"/>
+					</div>
+					<div className="w-full ">
+						<button className="text-xl font-mono text-gray-400/80">App Development (Soon)</button>
+					</div>
+				</div>
 				</div>
 				<h1 className="md:text-xl mt-4 text-xl text-gray-400 text-center uppercase">Free Services</h1>
 				<div className="z-10 grid mt-2 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto md:gap-5 md:p-5 gap-7 p-2 ">
@@ -190,7 +206,7 @@ export default function Services(argument) {
 							<AiOutlineFilePdf className="h-7 w-7 text-gray-200"/>
 						</div>
 						<div className="w-full ">
-							<button className="text-xl font-mono text-white/80">PDF to Audio File</button>
+							<button className="text-xl font-mono text-white/80">PDF to Audio Book</button>
 						</div>
 					</div>
 				</div>
