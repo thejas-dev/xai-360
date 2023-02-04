@@ -3,6 +3,8 @@ import {motion} from 'framer-motion'
 import {BsChevronDown} from 'react-icons/bs'
 import {useState} from 'react';
 import {useRouter} from 'next/router'
+import {signOut} from 'next-auth/react';
+import {MdOutlineLogout} from 'react-icons/md'
 
 export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect,openProfile,pricingRedirect,supportRedirect,token}) {
 	// body...
@@ -142,6 +144,13 @@ export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect
 					<img src={currentUser.profile} className="h-8 cursor-pointer w-8 drop-shadow-xl rounded-full"/>
 					<p className="text-2xl cursor-pointer hover:text-sky-400 transition duration-100 ease-in-out
 					font-mono text-gray-200">Profile</p>
+					</div>
+					<div 
+					onClick={signOut}
+					className="flex gap-2 items-center px-2 py-2 border-b-[1px] hover:border-sky-400 border-orange-500 rounded-xl">
+					<MdOutlineLogout className="h-7 w-7 text-red-500"/>
+					<p className="text-2xl cursor-pointer hover:text-sky-400 transition duration-100 ease-in-out
+					font-mono text-gray-200">SignOut</p>
 					</div>
 					</>
 				}

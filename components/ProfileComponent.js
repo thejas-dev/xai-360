@@ -6,7 +6,7 @@ import axios from 'axios';
 import {setProfileAndNameRoutes} from '../utils/ApiRoutes';
 import {useState,useEffect} from 'react';
 import {AiOutlineEdit} from 'react-icons/ai'
-import ImageKit from "imagekit"
+import ImageKit from "imagekit";
 
 
 export default function ProfileComponent(argument) {
@@ -220,7 +220,7 @@ export default function ProfileComponent(argument) {
 							<img src={profile} alt="" className={`image rounded-full`}/> 						
     					</div>
     					<div className="info">
-    						<h1 className="title text-3xl mt-3 transition-all duration-[0.75s] ease-out text-center font-anurati">
+    						<h1 className="title text-xl md:text-3xl mt-3 transition-all duration-[0.75s] ease-out text-center font-anurati">
     							Personal Information
     						</h1>
     						<h3 className="description transition-all duration-[0.75s] ease-out mt-7 text-xl font-cormorant text-center 

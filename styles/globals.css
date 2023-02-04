@@ -78,9 +78,9 @@
 		width: 100%;
 	}
 	.card{
-		padding: 2rem 1rem
+		padding: 1rem 2rem;
+		width: 85%
 	}
-	
 }
 
 @media only screen and (max-device-width:500px ){
