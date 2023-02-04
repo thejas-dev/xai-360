@@ -200,10 +200,10 @@ export default function LoginComponent(){
 							signIn()	
 						}						
 					}}
-					className="px-6 py-3 text-[#ca6f2b] font-varino bg-black/70">
+					className={`${ready ? 'px-5 py-2':'px-6 py-3'} text-[#ca6f2b] font-varino bg-black/70`}>
 					{
 						ready ?
-						<div className="h-7 w-7 border-[4px] border-gray-400 border-t-yellow-500 rounded-full animate-spin">
+						<div className="h-8 w-8 border-[4px] border-gray-400 border-t-[#dca763] rounded-full animate-spin">
 
 						</div>
 						:
