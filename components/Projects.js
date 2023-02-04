@@ -91,7 +91,7 @@ export default function Projects(argument) {
 				</div>
 				<div className="snap-center w-screen flex-shrink-0 p-5">
 					<h1 className="text-[#b93436]/90 text-3xl md:text-5xl uppercase mb-5 font-bold tracking-[7px] text-center">Spotify</h1>
-					<img src="https://ik.imagekit.io/d3kzbpbila/spotify-modified_jKUphQJAM?ik-sdk-version=javascript-1.4.3&updatedAt=1673104392380"
+					<img src="https://ik.imagekit.io/d3kzbpbila/thejashari_8L0YMlwQq"
 					className="rounded-xl"
 					/>
 					<p className="mt-5 md:text-lg text-md text-gray-300 font-sans text-center font-semibold">Integrated Alan AI with Our Spotify Web Application to let users to use the music controls over voice</p>
