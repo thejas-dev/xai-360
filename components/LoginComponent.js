@@ -34,9 +34,16 @@ export default function LoginComponent({providers}){
 		}
 	},[session])
 	var id = "";
-	  useEffect(()=>{
-	    id = Object.values(providers).map((provider)=>provider.id)
-	  },[providers])
+	useEffect(()=>{
+		if(id){
+			id = Object.values(providers).map((provider)=>provider.id)	
+		}		
+	},[providers])
+	useEffect(()=>{
+		if(id2){
+			id=id2;
+		}
+	},[id2])
 	const redirect = () =>{
 		router.push(`/${router.query.redirect ? router.query.redirect : "/"}`);
 	}
