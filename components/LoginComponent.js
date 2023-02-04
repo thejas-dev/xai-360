@@ -40,7 +40,7 @@ export default function LoginComponent({id}){
 	const redirectToWelcomePage = () => {
 		router.push(`/welcome?redirect=${router.query.redirect ? router.query.redirect : "/"}`);
 	}
-
+	console.log(id)
 	const handleValidation = async() =>{
 		let username = session?.user.name
 		let email = session?.user.email
