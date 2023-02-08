@@ -19,6 +19,7 @@ export default function Header({hide,redirect,token}) {
 	const [revealProfile,setRevealProfile] = useState(false);
 
 	const textServices = [
+	{url:'/gf',name:'Virtual GF/BF'},
 	{url:'/debug',name:'Code Debug'},
 	{url:'/code',name:'Write Code'},
 	{url:'/imagegenerate',name:'Image Generation'},

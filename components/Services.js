@@ -15,7 +15,7 @@ import {SlSpeech,SlEnvolopeLetter} from 'react-icons/sl';
 import {useRouter} from 'next/router'
 import {BsImages,BsCardHeading} from 'react-icons/bs';
 import {GoQuestion} from 'react-icons/go'
-import {AiFillYoutube,AiOutlineInstagram,AiOutlineFilePdf,AiOutlineApple} from 'react-icons/ai'
+import {AiFillYoutube,AiOutlineInstagram,AiOutlineFilePdf,AiOutlineApple,AiFillHeart} from 'react-icons/ai'
 
 export default function Services(argument) {
 	// body...
@@ -24,7 +24,23 @@ export default function Services(argument) {
 	return (
 		<div className="min-h-screen w-full z-20 relative flex flex-col mx-auto" >
 			<div className="absolute w-full h-[433px] z-0 md:top-[30%] top-[40%] bg-[#F7AB0A]/10 left-0 -skew-y-12"/>
-			<h1 className="md:text-3xl text-xl mt-10 tracking-[10px] uppercase font-mono text-center text-gray-300"
+			<h1 className="md:text-xl mt-5 text-md text-gray-400 text-center uppercase mt-10">Valentine's Special</h1>
+			<div className="z-10 grid mt-5 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto md:gap-5 md:p-5 gap-7 p-2 ">
+				<div className='w-full md:block hidden'>
+
+				</div>
+				<div 
+				onClick={()=>{router.push('/gf')}}
+				className="w-full border-[2.5px]  border-rose-400 gap-5 rounded-xl bg-gray-700/20 hover:bg-gray-500/30 active:scale-90 active:bg-gray-300/40 transiton-all duration-100 cursor-pointer ease-out backdrop-blur-sm flex items-center py-5 px-5">
+					<div className="bg-rose-400/90 rounded-full p-2">
+						<AiFillHeart className="h-7 w-7 text-gray-200"/>
+					</div>
+					<div className="w-full flex flex-col items-start gap-1">
+						<button className="text-xl font-mono text-white/80">Virtual Partner GF/BF</button>
+					</div>
+				</div>
+			</div>
+			<h1 className="md:text-3xl text-xl mt-5 tracking-[10px] uppercase font-mono text-center text-gray-300"
 			>
 				Our Services
 			</h1>

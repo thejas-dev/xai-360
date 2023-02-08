@@ -11,6 +11,7 @@ export default function Sidebar({loginRedirect,currentUser,signOut,aboutRedirect
 	const [openServicesTab,setOpenServicesTab] = useState(false)
 	const router = useRouter();
 	const textServices = [
+	{url:'/gf',name:'Virtual GF/BF'},
 	{url:'/debug',name:'Code Debug'},
 	{url:'/code',name:'Write Code'},
 	{url:'/imagegenerate',name:'Image Generation'},
