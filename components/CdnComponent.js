@@ -415,7 +415,7 @@ export default function CdnComponent() {
     		</div>
     		<h1 className="text-md text-gray-500 text-center font-medium">Do not exit or refresh the page while uploading</h1>
     		<center>
-				<button onClick={()=>{if(!loader && uploadArray )upload();}} className={`mt-7 ${uploadArray ? "bg-green-600" : "bg-green-700/60" }
+				<button onClick={()=>{if(!loader && uploadArray && currentUser )upload();}} className={`mt-7 ${uploadArray && currentUser ? "bg-green-600" : "bg-green-700/60" }
 				w-[140px] mx-auto md:text-xl text-lg text-gray-300 tracking-[3px] px-3 py-2 rounded-full hover:bg-green-500/90 
 				transition duration-200 uppercase flex items-center justify-center font-mono ease-in-out`}>
 					{

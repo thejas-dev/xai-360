@@ -24,6 +24,12 @@ export default function TextComponent() {
     }
   },[])
 
+  useEffect(()=>{
+    if(window.SpeechSynthesis){
+        setLanguages(window.speechSynthesis.getVoices());
+    }
+  },[window.speechSynthesis])
+
   const speak = () => {
     const Speech = new SpeechSynthesisUtterance();
     const voices = window.speechSynthesis.getVoices();
