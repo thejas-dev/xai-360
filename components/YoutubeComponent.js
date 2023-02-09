@@ -38,6 +38,11 @@ export default function YoutuneComponent(argument) {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -85,7 +90,22 @@ export default function YoutuneComponent(argument) {
 		setGeneratedIdeas('');
 		setLoader(true);
 		document.getElementById('ideas_block').innerHTML ="";
-		const response = await openai.createCompletion({
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you Suggest some attractive and nice youtube content ideas in the topic of ${topic} about ${keywords}`,
+				temperature: 0.5,
+		  		max_tokens: 1000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('ideas_block');
+			setGeneratedIdeas(parsedData);
+			typeMessageIdeas(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
 			model: "text-davinci-003",
 			prompt:`Can you Suggest some attractive and nice youtube content ideas in the topic of ${topic} about ${keywords}`,
 			temperature: 0.5,
@@ -98,6 +118,7 @@ export default function YoutuneComponent(argument) {
 		const element = document.getElementById('ideas_block');
 		setGeneratedIdeas(parsedData);
 		typeMessageIdeas(element,parsedData)
+		}
 	}
 
 	const typeMessageIdeas = (element,text) =>{
@@ -118,70 +139,137 @@ export default function YoutuneComponent(argument) {
 	}
 
 	const generateTitle = async() => {
-		const response = await openai.createCompletion({
-		  model: "text-davinci-003",
-		  prompt: `Generate an full, SEO optimized and attractive youtube title for this video content,\n
-		  channel name:${channelName ? channelName : "not provided"}\n
-		  category of the video:${category}\n
-		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords ? keywords : 'not provided'}\n
-		  ${promotingProducts && `promoting a product with name:${productName}`}
-		   `,
-		  temperature: 0.2,
-		  max_tokens: 100,
-		  top_p: 1,
-		  frequency_penalty: 0.5,
-		  presence_penalty: 0,
-		});
-		const parsedData = response.data.choices[0].text;
-		const element =document.getElementById('title_block');
-		typeMessage(element,parsedData,'title');
-		setGeneratedTitle(parsedData)
+		try{
+			const response = await openai.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate an full, SEO optimized and attractive youtube title for this video content,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.2,
+			  max_tokens: 100,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			const element =document.getElementById('title_block');
+			typeMessage(element,parsedData,'title');
+			setGeneratedTitle(parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate an full, SEO optimized and attractive youtube title for this video content,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.2,
+			  max_tokens: 100,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			const element =document.getElementById('title_block');
+			typeMessage(element,parsedData,'title');
+			setGeneratedTitle(parsedData)
+		}
 	}
 
 	const generateDescription = async() => {
-		const response = await openai.createCompletion({
-		  model: "text-davinci-003",
-		  prompt: `Generate an full, attractive and informative youtube video description (with hashtags at starting and in ending) with minimum of 500 words and 3 paragraphs to use in this youtube video,video details is given below,\n
-		  channel name:${channelName ? channelName : "not provided"}\n
-		  category of the video:${category}\n
-		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords ? keywords : 'not provided'}\n
-		  ${promotingProducts && `promoting a product with name:${productName}`}
-		   `,
-		  temperature: 0.4,
-		  max_tokens: 500,
-		  top_p: 1,
-		  frequency_penalty: 0.5,
-		  presence_penalty: 0,
-		});
-		const parsedData = response.data.choices[0].text;
-		console.log(parsedData)
-		const element =document.getElementById('description_block');
-		typeMessage(element,parsedData,'description');
-		setGeneratedDescription(parsedData)
+		try{
+			const response = await openai.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate an full, attractive and informative youtube video description (with hashtags at starting and in ending) with minimum of 500 words and 3 paragraphs to use in this youtube video,video details is given below,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.4,
+			  max_tokens: 500,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			console.log(parsedData)
+			const element =document.getElementById('description_block');
+			typeMessage(element,parsedData,'description');
+			setGeneratedDescription(parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate an full, attractive and informative youtube video description (with hashtags at starting and in ending) with minimum of 500 words and 3 paragraphs to use in this youtube video,video details is given below,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.4,
+			  max_tokens: 500,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			console.log(parsedData)
+			const element =document.getElementById('description_block');
+			typeMessage(element,parsedData,'description');
+			setGeneratedDescription(parsedData)
+		}
 	}
 
 	const generateTags = async() => {
-		const response = await openai.createCompletion({
-		  model: "text-davinci-003",
-		  prompt: `Generate 15 Tags for this Youtube Video and return them by separating each tags by comma,\n
-		  channel name:${channelName ? channelName : "not provided"}\n
-		  category of the video:${category}\n
-		  concept or purpose of the video:${prompt}\n
-		  keywords:${keywords ? keywords : 'not provided'}\n
-		  ${promotingProducts && `promoting a product with name:${productName}`}
-		   `,
-		  temperature: 0.3,
-		  max_tokens: 300,
-		  top_p: 1,
-		  frequency_penalty: 0.5,
-		  presence_penalty: 0,
-		});
-		const parsedData = response.data.choices[0].text;
-		const element =document.getElementById('tags_block');
-		typeMessage(element,parsedData,'tags');
-		setGeneratedTags(parsedData)
+		try{
+			const response = await openai.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate 15 Tags for this Youtube Video and return them by separating each tags by comma,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.3,
+			  max_tokens: 300,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			const element =document.getElementById('tags_block');
+			typeMessage(element,parsedData,'tags');
+			setGeneratedTags(parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Generate 15 Tags for this Youtube Video and return them by separating each tags by comma,\n
+			  channel name:${channelName ? channelName : "not provided"}\n
+			  category of the video:${category}\n
+			  concept or purpose of the video:${prompt}\n
+			  keywords:${keywords ? keywords : 'not provided'}\n
+			  ${promotingProducts && `promoting a product with name:${productName}`}
+			   `,
+			  temperature: 0.3,
+			  max_tokens: 300,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			const parsedData = response.data.choices[0].text;
+			const element =document.getElementById('tags_block');
+			typeMessage(element,parsedData,'tags');
+			setGeneratedTags(parsedData)
+		}
 	}
 
 	const typeMessage = (element,text,block) =>{

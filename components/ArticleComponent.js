@@ -39,6 +39,11 @@ export default function ArticleComponent() {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -94,18 +99,33 @@ export default function ArticleComponent() {
 		document.getElementById('resultContainer').scrollIntoView({behavior:"smooth",block:"center"})
 		element.innerHTML = "";
 		setOptionsVisible(false);
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Please generate an outline for an article on ${topic}, targeted towards ${target}, with a desired length of ${articleLength}, including keywords/phrases ${keywords}, written in a ${tone} tone. The outline should include sections for introduction, background information, body, conclusion, references, appendices, acknowledgements, and author's note.also indicate that the acknowledgements and author's note should be need to be written by own`,
-			temperature: 0.3,
-	  		max_tokens: 2500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		let parsedData = response.data.choices[0].text.trim();
-		setGeneratedResponse(parsedData);
-		typeMessageMain(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Please generate an outline for an article on ${topic}, targeted towards ${target}, with a desired length of ${articleLength}, including keywords/phrases ${keywords}, written in a ${tone} tone. The outline should include sections for introduction, background information, body, conclusion, references, appendices, acknowledgements, and author's note.also indicate that the acknowledgements and author's note should be need to be written by own`,
+				temperature: 0.3,
+		  		max_tokens: 2500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			let parsedData = response.data.choices[0].text.trim();
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Please generate an outline for an article on ${topic}, targeted towards ${target}, with a desired length of ${articleLength}, including keywords/phrases ${keywords}, written in a ${tone} tone. The outline should include sections for introduction, background information, body, conclusion, references, appendices, acknowledgements, and author's note.also indicate that the acknowledgements and author's note should be need to be written by own`,
+				temperature: 0.3,
+		  		max_tokens: 2500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			let parsedData = response.data.choices[0].text.trim();
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)			
+		}
 	}
 
 	const typeMessageMain = (element,text) =>{
@@ -134,19 +154,6 @@ export default function ArticleComponent() {
 		setGeneratedResponse2('')
 		document.getElementById('articleContainer').classList.remove('hidden');
 		document.getElementById('articleBox').innerHTML = "";
-		// const response = await openai.createCompletion({
-		// 	model: "text-davinci-003",
-		// 	prompt:`${generatedResponse}\nCan you list only the main topics in this article outline like introduction and return it only as an javascript array :- \n`,
-		// 	temperature: 0,
-	 //  		max_tokens: 2500,
-	 //  		top_p: 1,
-	 //  		frequency_penalty: 0.5,
-	 //  		presence_penalty: 0
-		// })
-		// let parsedData = response.data.choices[0].text;
-		// setGeneratedTopicArray(parsedData)
-		// console.log(parsedData)
-		// parsedData = JSON.parse(parsedData)
 		const parsedData = ['introduction', 'background information', 'body', 'conclusion', 'references', 'appendices']
 		generateArticle(parsedData)
 	} 
@@ -155,22 +162,41 @@ export default function ArticleComponent() {
 		const element = document.getElementById('articleBox');
 		for(const lesson of topics){
 			setLoader(true)
-			const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`
-				The outline provided : -\n
-				${generatedResponse}\n
-				Write a detailed analysis of the ${lesson} from the outline provided mentioning the ${lesson} as heading with some spacing before it, in ${tone} tone and target towards ${target} with a length of ${lesson === 'body' ? articleLength : '200 words'} , in a ${tone} tone.\n
-			`,
-			temperature: 0.1,
-	  		max_tokens: 2500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		let parsedData = response.data.choices[0].text;
-		setGeneratedResponse2(parsedData);
-		const result = await typeMessageArticle(element,`\n${parsedData}`)
+			try{
+				const response = await openai.createCompletion({
+					model: "text-davinci-003",
+					prompt:`
+						The outline provided : -\n
+						${generatedResponse}\n
+						Write a detailed analysis of the ${lesson} from the outline provided mentioning the ${lesson} as heading with some spacing before it, in ${tone} tone and target towards ${target} with a length of ${lesson === 'body' ? articleLength : '200 words'} , in a ${tone} tone.\n
+					`,
+					temperature: 0.1,
+			  		max_tokens: 3000,
+			  		top_p: 1,
+			  		frequency_penalty: 0.5,
+			  		presence_penalty: 0
+				})
+				let parsedData = response.data.choices[0].text;
+				setGeneratedResponse2(parsedData);
+				const result = await typeMessageArticle(element,`\n${parsedData}`)
+			}catch(err){
+				const response = await openai2.createCompletion({
+					model: "text-davinci-003",
+					prompt:`
+						The outline provided : -\n
+						${generatedResponse}\n
+						Write a detailed analysis of the ${lesson} from the outline provided mentioning the ${lesson} as heading with some spacing before it, in ${tone} tone and target towards ${target} with a length of ${lesson === 'body' ? articleLength : '200 words'} , in a ${tone} tone.\n
+					`,
+					temperature: 0.1,
+			  		max_tokens: 3000,
+			  		top_p: 1,
+			  		frequency_penalty: 0.5,
+			  		presence_penalty: 0
+				})
+				let parsedData = response.data.choices[0].text;
+				setGeneratedResponse2(parsedData);
+				const result = await typeMessageArticle(element,`\n${parsedData}`)
+			}
 		}
 	}
 

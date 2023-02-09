@@ -32,6 +32,10 @@ export default function LetterComponent() {
 	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 	});
 	const openai = new OpenAIApi(configuration);
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
 
 	useEffect(()=>{
 		if(loader){
@@ -59,18 +63,33 @@ export default function LetterComponent() {
 		document.getElementById('resultContainer').classList.remove('hidden');
 		const element =document.getElementById('letter_block');
 		element.innerHTML = "";
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Please generate a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter for ${senderName} to ${recipientName}.\nThe letter should include the following information: ${prompt}. \nPlease ensure that the letter follows the proper format and language for a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter, and includes the sender's and recipient's contact information and any closing or signature information.`,
-			temperature: 0.3,
-	  		max_tokens: 2000,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		setGeneratedLetter(parsedData);
-		typeMessageMain(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Please generate a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter for ${senderName} to ${recipientName}.\nThe letter should include the following information: ${prompt}. \nPlease ensure that the letter follows the proper format and language for a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter, and includes the sender's and recipient's contact information and any closing or signature information.`,
+				temperature: 0.3,
+		  		max_tokens: 2000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedLetter(parsedData);
+			typeMessageMain(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Please generate a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter for ${senderName} to ${recipientName}.\nThe letter should include the following information: ${prompt}. \nPlease ensure that the letter follows the proper format and language for a ${formalOrInformal==='other' ? otherFormalType : formalOrInformal } ${letterType==='other' ? otherLetterType : letterType} letter, and includes the sender's and recipient's contact information and any closing or signature information.`,
+				temperature: 0.3,
+		  		max_tokens: 2000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedLetter(parsedData);
+			typeMessageMain(element,parsedData)
+		}
 	}
 
 	const typeMessageMain = (element,text) =>{

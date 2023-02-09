@@ -33,6 +33,10 @@ export default function InstaComponent() {
 	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 	});
 	const openai = new OpenAIApi(configuration);
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
 	
 	useEffect(()=>{
 		if(loader){
@@ -47,19 +51,35 @@ export default function InstaComponent() {
 	const generateIdeas = async() => {
 		setGeneratedIdeas('');
 		document.getElementById('ideas_block').innerHTML ="";
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Suggest me some instagram content ideas about ${topic} , keywords = ${keywords}`,
-			temperature: 0.3,
-	  		max_tokens: 1000,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		const element = document.getElementById('ideas_block');
-		setGeneratedIdeas(parsedData);
-		typeMessage(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Suggest me some instagram content ideas about ${topic} , keywords = ${keywords}`,
+				temperature: 0.3,
+		  		max_tokens: 1000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('ideas_block');
+			setGeneratedIdeas(parsedData);
+			typeMessage(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Suggest me some instagram content ideas about ${topic} , keywords = ${keywords}`,
+				temperature: 0.3,
+		  		max_tokens: 1000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('ideas_block');
+			setGeneratedIdeas(parsedData);
+			typeMessage(element,parsedData)
+		}
 	}
 
 	const typeMessage = (element,text) =>{
@@ -100,7 +120,22 @@ export default function InstaComponent() {
 	}
 		
 	const generateCaptions = async() => {
-		const response = await openai.createCompletion({
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you suggest some captions for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
+				temperature: 0.3,
+		  		max_tokens: 500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('captions_block');
+			setGeneratedCaptions(parsedData);
+			typeMessageMain(element,parsedData,'captions')
+		}catch(err){
+			const response = await openai2.createCompletion({
 			model: "text-davinci-003",
 			prompt:`Can you suggest some captions for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
 			temperature: 0.3,
@@ -113,23 +148,40 @@ export default function InstaComponent() {
 		const element = document.getElementById('captions_block');
 		setGeneratedCaptions(parsedData);
 		typeMessageMain(element,parsedData,'captions')
+		}
 
 	}
 
 	const generateTags = async() => {
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Can you suggest some tags for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
-			temperature: 0.3,
-	  		max_tokens: 500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		const element = document.getElementById('tags_block');
-		setGeneratedTags(parsedData);
-		typeMessageMain(element,parsedData,'tags')
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you suggest some tags for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
+				temperature: 0.3,
+		  		max_tokens: 500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('tags_block');
+			setGeneratedTags(parsedData);
+			typeMessageMain(element,parsedData,'tags')
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you suggest some tags for a ${category} video showcasing ${prompt} with ${keywords} ${promotingProducts && `and promoting products ${productName}`}`,
+				temperature: 0.3,
+		  		max_tokens: 500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			const element = document.getElementById('tags_block');
+			setGeneratedTags(parsedData);
+			typeMessageMain(element,parsedData,'tags')
+		}
 	}
 
 	const generateNow = () => {

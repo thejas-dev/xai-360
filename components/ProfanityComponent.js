@@ -28,6 +28,11 @@ export default function ProfanityComponent() {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -45,18 +50,33 @@ export default function ProfanityComponent() {
 		document.getElementById('resultContainer').scrollIntoView({behavior:"smooth",block:"center"})
 		const element =document.getElementById('resultBox');
 		element.innerHTML = "";
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Clean the following text by removing any profanity, using a ${moderateLevel} level of sensitivity in ${language}: ${prompt}. ${filterName}`,
-			temperature: 0.3,
-	  		max_tokens: 2000,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		setGeneratedResponse(parsedData);
-		typeMessageMain(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Clean the following text by removing any profanity, using a ${moderateLevel} level of sensitivity in ${language}: ${prompt}. ${filterName}`,
+				temperature: 0.3,
+		  		max_tokens: 2000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Clean the following text by removing any profanity, using a ${moderateLevel} level of sensitivity in ${language}: ${prompt}. ${filterName}`,
+				temperature: 0.3,
+		  		max_tokens: 2000,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)
+		}
 	}
 
 	const typeMessageMain = (element,text) =>{

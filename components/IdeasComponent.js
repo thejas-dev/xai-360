@@ -26,6 +26,11 @@ export default function IdeasComponent(argument) {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -44,18 +49,33 @@ export default function IdeasComponent(argument) {
 		const element =document.getElementById('resultBox');
 		document.getElementById('resultContainer').scrollIntoView({behavior:"smooth",block:"center"})
 		element.innerHTML = "";
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Generate several variation of business ideas for the ${industry} industry that target ${target}, have a budget of ${budget},with a focus on solving the problem of ${problem} ${additional ? `and take into account the additional information provided: ${additional}`:"."} `,
-			temperature: 0.3,
-	  		max_tokens: 2500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		setGeneratedResponse(parsedData);
-		typeMessageMain(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Generate several variation of business ideas for the ${industry} industry that target ${target}, have a budget of ${budget},with a focus on solving the problem of ${problem} ${additional ? `and take into account the additional information provided: ${additional}`:"."} `,
+				temperature: 0.3,
+		  		max_tokens: 2500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Generate several variation of business ideas for the ${industry} industry that target ${target}, have a budget of ${budget},with a focus on solving the problem of ${problem} ${additional ? `and take into account the additional information provided: ${additional}`:"."} `,
+				temperature: 0.3,
+		  		max_tokens: 2500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedResponse(parsedData);
+			typeMessageMain(element,parsedData)
+		}
 	}
 
 	const typeMessageMain = (element,text) =>{

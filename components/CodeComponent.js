@@ -31,6 +31,11 @@ export default function CodeComponent() {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -109,20 +114,37 @@ export default function CodeComponent() {
 		document.getElementById('resultContainer').scrollIntoView({behavior:"smooth",block:"center"})
 		const element =document.getElementById('resultBox');
 		element.innerHTML = "";
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:`Can you write code in ${language} for this problem: ${prompt}. 
-			Additional details: ${additionalContext}. 
-			Function name: ${functionName}, Variables: ${functionName}`,
-			temperature: 0.3,
-	  		max_tokens: 3500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		setGeneratedCode(parsedData);
-		typeMessageMain(element,parsedData)
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you write code in ${language} for this problem: ${prompt}. 
+				Additional details: ${additionalContext}. 
+				Function name: ${functionName}, Variables: ${functionName}`,
+				temperature: 0.3,
+		  		max_tokens: 3500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedCode(parsedData);
+			typeMessageMain(element,parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+				model: "text-davinci-003",
+				prompt:`Can you write code in ${language} for this problem: ${prompt}. 
+				Additional details: ${additionalContext}. 
+				Function name: ${functionName}, Variables: ${functionName}`,
+				temperature: 0.3,
+		  		max_tokens: 3500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setGeneratedCode(parsedData);
+			typeMessageMain(element,parsedData)
+		}
 	}
 
 	const explainCodeWithPrompt = async() => {

@@ -22,6 +22,10 @@ export default function DebugComponent() {
 	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 	});
 	const openai = new OpenAIApi(configuration);
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
 	const [prompt,setPrompt] = useState('');
 	const [loader,setLoader] = useState('');
 	const [currentUser,setCurrentUser] = useRecoilState(currentUserState);
@@ -43,24 +47,45 @@ export default function DebugComponent() {
 		const element =document.getElementById('resultBox');
 		element.innerHTML = "";
 		document.getElementById('resultContainer').classList.add('hidden');
-		const response = await openai.createCompletion({
-		  model: "text-davinci-003",
-		  prompt: `Debug this piece of ${languageType} code and return only the code , if cannot debug the code return "Something went Wrong" and the error type or reference for the error is also provided in Error In This Code:\n\n
-		   Code:${prompt}\n\n
-		   Error In This Code:${description}\n\n
-		   Result:
-		   `,
-		  temperature: 0,
-		  max_tokens: 3500,
-		  top_p: 1,
-		  frequency_penalty: 0.5,
-		  presence_penalty: 0,
-		});
-		setLoader(false);
-		document.getElementById('resultContainer').classList.remove('hidden');
-		const parsedData = response.data.choices[0].text
-		typeMessage(parsedData)
-		setResult(parsedData)
+		try{
+			const response = await openai.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Debug this piece of ${languageType} code and return only the code , if cannot debug the code return "Something went Wrong" and the error type or reference for the error is also provided in Error In This Code:\n\n
+			   Code:${prompt}\n\n
+			   Error In This Code:${description}\n\n
+			   Result:
+			   `,
+			  temperature: 0,
+			  max_tokens: 3500,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			setLoader(false);
+			document.getElementById('resultContainer').classList.remove('hidden');
+			const parsedData = response.data.choices[0].text
+			typeMessage(parsedData)
+			setResult(parsedData)
+		}catch(err){
+			const response = await openai2.createCompletion({
+			  model: "text-davinci-003",
+			  prompt: `Debug this piece of ${languageType} code and return only the code , if cannot debug the code return "Something went Wrong" and the error type or reference for the error is also provided in Error In This Code:\n\n
+			   Code:${prompt}\n\n
+			   Error In This Code:${description}\n\n
+			   Result:
+			   `,
+			  temperature: 0,
+			  max_tokens: 3500,
+			  top_p: 1,
+			  frequency_penalty: 0.5,
+			  presence_penalty: 0,
+			});
+			setLoader(false);
+			document.getElementById('resultContainer').classList.remove('hidden');
+			const parsedData = response.data.choices[0].text
+			typeMessage(parsedData)
+			setResult(parsedData)
+		}
 	}
 
 	const typeMessage = (text) =>{
