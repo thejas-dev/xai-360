@@ -65,6 +65,9 @@ export default function ChatBox({currentUser,sendMessage,setWriteText,writeText,
 		}
 	},[writeText])
 
+	useEffect(()=>{
+		scrollRef.current?.scrollIntoView({behaviour:"smooth"});
+	},[])
 
 	useEffect(()=>{
 		scrollRef.current?.scrollIntoView({behaviour:"smooth"});

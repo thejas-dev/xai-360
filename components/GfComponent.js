@@ -40,6 +40,11 @@ export default function GfComponent() {
 	});
 	const openai = new OpenAIApi(configuration);
 
+	const configuration2 = new Configuration({
+	  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY2,
+	});
+	const openai2 = new OpenAIApi(configuration2);
+
 	useEffect(()=>{
 		if(loader){
 			document.getElementById('upperDesign').classList.add('animate-ping');
@@ -146,29 +151,17 @@ export default function GfComponent() {
 		const userId = currentUser._id;
 		const chats = [...currentUser.chats,chat];
 		replyFromAi(text,chats);
-<<<<<<< HEAD
 		const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
 		setCurrentUser(data.obj);
-=======
-                const {data} = await axios.post(setChatRoute,{
-			chats,userId
-		})
-		setCurrentUser(data.obj);
-		
->>>>>>> f40687a42e759e5be5c858f48fb8db6821b85e8d
 	}
 
 	const replyFromAi = async(text,chatsArg) => {
 		
 		const prompt = `${currentUser.gfPrompt}\n
 		${chatsArg.map((chat,i,{length})=>{
-<<<<<<< HEAD
-			const reqIndex = length-20
-=======
-			const reqIndex = length-6
->>>>>>> f40687a42e759e5be5c858f48fb8db6821b85e8d
+			const reqIndex = length-8;
 			if(i>reqIndex){
 				return (
 					chat.ai ? 
@@ -180,28 +173,66 @@ export default function GfComponent() {
 			})}
 		${currentUser.gfName} :- 
 		`
-		
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt:prompt,
-			temperature: 0.3,
-	  		max_tokens: 2500,
-	  		top_p: 1,
-	  		frequency_penalty: 0.5,
-	  		presence_penalty: 0
-		})
-		const parsedData = response.data.choices[0].text;
-		setWriteText(parsedData);
-		const chat = {
-			ai:true,
-			message:parsedData
+		try{
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt:prompt,
+				temperature: 0.3,
+		  		max_tokens: 3500,
+		  		top_p: 1,
+		  		frequency_penalty: 0.5,
+		  		presence_penalty: 0
+			})
+			const parsedData = response.data.choices[0].text;
+			setWriteText(parsedData);
+			const chat = {
+				ai:true,
+				message:parsedData
+			}
+			const userId = currentUser._id;
+			const chats = [...chatsArg,chat];
+			const {data} = await axios.post(setChatRoute,{
+				chats,userId
+			})
+			setCurrentUser(data.obj);
+		}catch(err){
+			try{
+				const response = await openai2.createCompletion({
+					model: "text-davinci-003",
+					prompt:prompt,
+					temperature: 0.3,
+			  		max_tokens: 3500,
+			  		top_p: 1,
+			  		frequency_penalty: 0.5,
+			  		presence_penalty: 0
+				})
+				const parsedData = response.data.choices[0].text;
+				setWriteText(parsedData);
+				const chat = {
+					ai:true,
+					message:parsedData
+				}
+				const userId = currentUser._id;
+				const chats = [...chatsArg,chat];
+				const {data} = await axios.post(setChatRoute,{
+					chats,userId
+				})
+				setCurrentUser(data.obj);
+			}catch(err){
+				const parsedData = "Hey Im too tired right now can we talk later, Sorry Babe...";
+				setWriteText(parsedData);
+				const chat = {
+					ai:true,
+					message:parsedData
+				}
+				const userId = currentUser._id;
+				const chats = [...chatsArg,chat];
+				const {data} = await axios.post(setChatRoute,{
+					chats,userId
+				})
+				setCurrentUser(data.obj);
+			}
 		}
-		const userId = currentUser._id;
-		const chats = [...chatsArg,chat];
-		const {data} = await axios.post(setChatRoute,{
-			chats,userId
-		})
-		setCurrentUser(data.obj);
 	}
 
   	const showPricing = () => {
