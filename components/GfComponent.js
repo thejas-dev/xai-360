@@ -145,17 +145,17 @@ export default function GfComponent() {
 		}
 		const userId = currentUser._id;
 		const chats = [...currentUser.chats,chat];
+		replyFromAi(text,chats);
 		const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
 		setCurrentUser(data.obj);
-		replyFromAi(text,data.obj);
 	}
 
 	const replyFromAi = async(text,chatsArg) => {
 		
 		const prompt = `${currentUser.gfPrompt}\n
-		${chatsArg.chats.map((chat,i,{length})=>{
+		${chatsArg.map((chat,i,{length})=>{
 			const reqIndex = length-20
 			if(i>reqIndex){
 				return (
@@ -185,7 +185,7 @@ export default function GfComponent() {
 			message:parsedData
 		}
 		const userId = currentUser._id;
-		const chats = [...chatsArg.chats,chat];
+		const chats = [...chatsArg,chat];
 		const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
