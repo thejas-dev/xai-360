@@ -145,11 +145,12 @@ export default function GfComponent() {
 		}
 		const userId = currentUser._id;
 		const chats = [...currentUser.chats,chat];
-		const {data} = await axios.post(setChatRoute,{
+		replyFromAi(text,chats);
+                const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
 		setCurrentUser(data.obj);
-		replyFromAi(text,data.obj);
+		
 	}
 
 	const replyFromAi = async(text,chatsArg) => {
