@@ -86,7 +86,7 @@ export default function ChatBox({currentUser,sendMessage,setWriteText,writeText,
         }}
 		className="min-h-screen flex flex-col w-full mx-auto relative  ">
 			<div className={`fixed ${revealOption ? "top-[120px]":"-top-[180px]"}  md:right-7 right-3 px-2 py-1 z-40 rounded-xl 
-			bg-gray-700/40 backdrop-blur-md border-[1px] border-gray-500/50 transition-all duration-300 ease-in-out gap-1`}>
+			bg-[#0C0C0C]/80 backdrop-blur-md border-[1px] border-gray-500/50 transition-all duration-300 ease-in-out gap-1`}>
 				<div className="gap-1 flex mt-1 border-gray-700 hover:border-sky-600 hover:bg-gray-400/20 border-b-[2px] rounded-xl px-1 py-2">
 					<CgProfile className="h-6 w-6 text-gray-600"/>
 					<button className="text-md text-gray-600 font-semibold">Partner profile</button>
@@ -134,8 +134,8 @@ export default function ChatBox({currentUser,sendMessage,setWriteText,writeText,
 				}
 			</div>
 			<center>
-			<div className={`fixed left-0 right-0 bottom-0 mx-auto w-[97%] md:max-w-6xl bg-gray-700/10 rounded-full border-[1.8px] border-gray-700/70 focus-within:backdrop-blur-lg focus-within:border-rose-500/70
-			backdrop-blur-sm  mb-4 md:px-3 px-2 md:py-2 py-1 flex items-center transition duration-200 ease-in-out ${message && 'backdrop-blur-lg'}`}> 
+			<div className={`fixed left-0 right-0 bottom-0 mx-auto w-[97%] md:max-w-6xl bg-gray-900/70 rounded-full border-[1.8px] border-gray-700/70 focus-within:backdrop-blur-lg focus-within:border-rose-500/70
+			backdrop-blur-md  mb-4 md:px-3 px-2 md:py-2 py-1 flex items-center transition duration-200 ease-in-out ${message && 'backdrop-blur-lg'}`}> 
 				<form className="w-full h-full" onSubmit={(e)=>{e.preventDefault();if(!writeText && !typingId){sendMessage(message);updateArray();setMessage('');}}} >
 				<input type="text" value={message} onChange={(e)=>setMessage(e.target.value)} 
 				className="bg-transparent outline-none w-full text-[#FFF] ml-2"
