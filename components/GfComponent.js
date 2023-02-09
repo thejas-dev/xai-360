@@ -146,17 +146,29 @@ export default function GfComponent() {
 		const userId = currentUser._id;
 		const chats = [...currentUser.chats,chat];
 		replyFromAi(text,chats);
+<<<<<<< HEAD
 		const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
 		setCurrentUser(data.obj);
+=======
+                const {data} = await axios.post(setChatRoute,{
+			chats,userId
+		})
+		setCurrentUser(data.obj);
+		
+>>>>>>> f40687a42e759e5be5c858f48fb8db6821b85e8d
 	}
 
 	const replyFromAi = async(text,chatsArg) => {
 		
 		const prompt = `${currentUser.gfPrompt}\n
 		${chatsArg.map((chat,i,{length})=>{
+<<<<<<< HEAD
 			const reqIndex = length-20
+=======
+			const reqIndex = length-6
+>>>>>>> f40687a42e759e5be5c858f48fb8db6821b85e8d
 			if(i>reqIndex){
 				return (
 					chat.ai ? 
