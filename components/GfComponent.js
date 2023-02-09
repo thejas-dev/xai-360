@@ -186,7 +186,7 @@ export default function GfComponent() {
 			message:parsedData
 		}
 		const userId = currentUser._id;
-		const chats = [...chatsArg.chats,chat];
+		const chats = [...chatsArg,chat];
 		const {data} = await axios.post(setChatRoute,{
 			chats,userId
 		})
