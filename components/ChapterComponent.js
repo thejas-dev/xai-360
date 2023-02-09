@@ -326,7 +326,7 @@ export default function ChapterComponent() {
         }}
         className="h-full flex px-4 flex-col z-10 max-w-6xl mx-auto mt-[100px]
     	scroll-smooth">	
-    		<h1 className="text-4xl md:text-5xl mb-3 text-[#FFF] text-shadow-fire mx-auto">Audio <span className="text-sky-500">Chapter Detection</span></h1>	
+    		<h1 className="text-2xl md:text-5xl mb-3 text-[#FFF] text-shadow-fire mx-auto">Audio <span className="text-sky-500">Chapter Detection</span></h1>	
     		<div className="h-[2px] w-[60%] md:w-[20%] mx-auto bg-orange-500 "/>
     		<input 
     			id="file_input"

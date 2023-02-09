@@ -366,7 +366,7 @@ export default function EntityComponent() {
         }}
         className="h-full flex px-4 flex-col z-10 max-w-6xl mx-auto mt-[100px]
     	scroll-smooth">	
-    		<h1 className="text-4xl md:text-5xl mb-3 text-[#FFF] text-shadow-fire mx-auto">Content <span className="text-sky-500">Safety Detection</span></h1>	
+    		<h1 className="text-2xl md:text-5xl mb-3 text-[#FFF] text-shadow-fire mx-auto">Content <span className="text-sky-500">Safety Detection</span></h1>	
     		<div className="h-[2px] w-[60%] md:w-[25%] mx-auto bg-orange-500 "/>
     		<div className="mt-7 md:w-[70%] w-[95%] mx-auto rounded-xl border-[1px] border-gray-400 px-3 bg-black/30 py-3">
     			<h1 className="text-md uppercase font-medium text-sky-500 font-semibold">Info:-</h1>
