@@ -156,7 +156,7 @@ export default function GfComponent() {
 	const replyFromAi = async(text,chatsArg) => {
 		
 		const prompt = `${currentUser.gfPrompt}\n
-		${chatsArg.chats.map((chat,i,{length})=>{
+		${chatsArg.map((chat,i,{length})=>{
 			const reqIndex = length-6
 			if(i>reqIndex){
 				return (
