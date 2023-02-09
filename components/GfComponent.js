@@ -156,7 +156,7 @@ export default function GfComponent() {
 		
 		const prompt = `${currentUser.gfPrompt}\n
 		${chatsArg.chats.map((chat,i,{length})=>{
-			const reqIndex = length-11
+			const reqIndex = length-6
 			if(i>reqIndex){
 				return (
 					chat.ai ? 
